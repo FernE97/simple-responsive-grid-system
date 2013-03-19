@@ -1,6 +1,10 @@
 # Simple Responsive Grid System
 
-A responsive grid system based off of Chris Coyier's [Don't Overthink It Grids](http://css-tricks.com/dont-overthink-it-grids/).
+Simple Responsive Grid System is based off of Chris Coyier's [Don't Overthink It Grids](http://css-tricks.com/dont-overthink-it-grids/). It is using Scss to create percentage based columns which can easily be modified by changing the variables. The variables let you set a max-width, # of columns, and the width of the gutters.
+
+Each column gets a padding-right of the set padding which by default is 30px. The parent container `.container-grid` gets a padding-left of the set padding. I have include a 12 & 16 column grid layout by default, so the layout can take advantage of a 3 or 4 column layout.
+
+### Some Example Code
 
 ```html
 <div class="container-grid">
@@ -18,15 +22,29 @@ A responsive grid system based off of Chris Coyier's [Don't Overthink It Grids](
 </div>
 ```
 
-Each column gets a padding-right of the set padding which by default is 30px. The parent container `.container-grid` gets a padding-left of the set padding. I have include a 12 & 16 column grid layout by default, so the layout can take advantage of a 3 or 4 column layout.
+```scss
+// Variables
+$grid-column-12: 12;
+$grid-gutter:    30px;
+$max-width:      1340px;
+
+
+// Loop
+@for $n from 1 through $grid-column-12 {
+    .col-#{$n}-#{$grid-column-12} {
+        @extend .col;
+        width: percentage($n / $grid-column-12);
+    }
+}
+```
 
 ## Class Names
 
-The class names for the columns consist on the amount or rows to span and the total amount of columns `.col-4-12`. There are also 'simple fraction' helper classes like `.col-1-2` which can make more sense once you start nesting columns. Since the content is floated, each column should be wrapped in a `.grid-row` div, or an element of your choice, as long as it contains the floats.
+The class names for the columns consist on the amount or rows to span and the total amount of columns `.col-4-12`. There are also 'simple fraction' helper classes like `.col-1-2` and `.col-1-3` which feel a little cleaner and can make more sense once you start nesting columns. Since the content is floated, each column should be wrapped in a `.grid-row` div, or an element of your choice, as long as it contains the floats.
 
 ## Nesting
 
-If you need to nest columns, add a class of `grid-nested` alongside the parent `col-x-x` class.
+If you need to nest columns, add a class of `grid-nested` alongside the parent `col-x-x` class. `grid-nested` simply adds `padding-right: 0` so the padding won't be doubled once a child column is added.
 
 ```html
 <div class="grid-row">
@@ -43,7 +61,7 @@ If you need to nest columns, add a class of `grid-nested` alongside the parent `
             <div class="col-1-3"></div>
         </div>
 
-    </div>
+    </div><!-- end grid-nested -->
 
     <div class="col-4-12 grid-nested">
 
@@ -52,8 +70,8 @@ If you need to nest columns, add a class of `grid-nested` alongside the parent `
             <div class="col-1-2"></div>
         </div>
 
-    </div>
-</div>
+    </div><!-- end grid-nested -->
+</div><!-- end grid-row -->
 ```
 
 ## Includes
