@@ -57,14 +57,18 @@ $max-width:      1340px;
 	@include box-sizing(border-box);
 }
 
+.clearfix {
+	@include clearfix();
+}
+
+.group, .grid-row {
+	@extend .clearfix;
+}
+
 .container-grid {
 	margin: 0 auto;
 	padding-left: $grid-gutter;
 	max-width: $max-width;
-}
-
-.grid-row {
-	@include clearfix();
 }
 
 .col {
