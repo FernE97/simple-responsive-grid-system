@@ -2,7 +2,7 @@
 
 Simple Responsive Grid System is based off of Chris Coyier's [Don't Overthink It Grids](http://css-tricks.com/dont-overthink-it-grids/). It is using Scss to create percentage based columns which can easily be modified by changing the variables. The variables let you set a max-width, # of columns, and the width of the gutters.
 
-Each column gets a padding-right of the set padding which by default is 30px. The parent container `.container-grid` gets a padding-left of the set padding. I have included 12 and 16 column grids by default, so the layout can take advantage of three and four column layouts.
+Each column gets a padding-right of the set padding which by default is 30px. The parent container `.container-grid` gets a padding-left of the set padding. I have included 12 and 16 column grids by default, so the layout can take advantage of three and four column layouts. [View the example page](http://ferne97.github.com/simple-responsive-grid-system/).
 
 ### Some Example Code
 
@@ -40,7 +40,7 @@ $max-width:      1340px;
 
 ## Class Names
 
-The class names for the columns consist on the amount or rows to span and the total amount of columns `.col-4-12`. `.col-100` is used for a full-width column. There are also 'simple fraction' helper classes like `.col-1-2` and `.col-1-3` which feel a little cleaner and can make more sense once you start nesting columns. Since the content is floated, each column should be wrapped in a `.grid-row` div, or an element of your choice, as long as it contains the floats.
+The class names for the columns consist of the amount or rows to span and the total amount of columns `.col-4-12`. `.col-100` is used for a full-width column. There are also 'simple fraction' helper classes like `.col-1-2` and `.col-1-3` which feel a little cleaner and can make more sense once you start nesting columns. Since the content is floated, each column should be wrapped in a `.grid-row` div, or an element of your choice, as long as it contains the floats.
 
 ## Nesting
 
@@ -129,7 +129,6 @@ The `col` mixin also includes the `col-base` mixin which adds the rest of the ne
 
 ```scss
 @mixin col-base {
-    @include box-sizing(border-box);
     position: relative;
     display: block;
     float: left;
@@ -149,10 +148,6 @@ Will output to this..
 
 ```css
 .content-main {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -ms-box-sizing: border-box;
-    box-sizing: border-box;
     position: relative;
     display: block;
     float: left;
