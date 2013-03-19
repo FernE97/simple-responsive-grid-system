@@ -18,7 +18,43 @@ A responsive grid system based off of Chris Coyier's [Don't Overthink It Grids](
 </div>
 ```
 
-The main idea behind this is that the parent container `.container-grid` get's a padding-left of the set padding, which by default is 30px. Then Each column get's a padding-right of the set padding. By setting the padding-left on the parent container, you don't have to worry about zeroing out the last column's margin or padding.
+Each column gets a padding-right of the set padding which by default is 30px. The parent container `.container-grid` gets a padding-left of the set padding. I have include a 12 & 16 column grid layout by default, so the layout can take advantage of a 3 or 4 column layout.
+
+## Class Names
+
+The class names for the columns consist on the amount or rows to span and the total amount of columns `.col-4-12`. There are also 'simple fraction' helper classes like `.col-1-2` which can make more sense once you start nesting columns. Since the content is floated, each column should be wrapped in a `.grid-row` div, or an element of your choice, as long as it contains the floats.
+
+## Nesting
+
+If you need to nest columns, add a class of `grid-nested` alongside the parent `col-x-x` class.
+
+```html
+<div class="grid-row">
+    <div class="col-8-12 grid-nested">
+
+        <div class="grid-row">
+            <div class="col-1-2"></div>
+            <div class="col-1-2"></div>
+        </div>
+
+        <div class="grid-row">
+            <div class="col-1-3"></div>
+            <div class="col-1-3"></div>
+            <div class="col-1-3"></div>
+        </div>
+
+    </div>
+
+    <div class="col-4-12 grid-nested">
+
+        <div class="grid-row">
+            <div class="col-1-2"></div>
+            <div class="col-1-2"></div>
+        </div>
+
+    </div>
+</div>
+```
 
 ## Includes
 
