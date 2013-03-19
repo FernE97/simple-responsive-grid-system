@@ -1,6 +1,10 @@
 # Simple Responsive Grid System
 
-A responsive grid system based off of Chris Coyier's [Don't Overthink It Grids](http://css-tricks.com/dont-overthink-it-grids/).
+Simple Responsive Grid System is based off of Chris Coyier's [Don't Overthink It Grids](http://css-tricks.com/dont-overthink-it-grids/). It is using Scss to create percentage based columns which can easily be modified by changing the variables. The variables let you set a max-width, # of columns, and the width of the gutters.
+
+Each column gets a padding-right of the set padding which by default is 30px. The parent container `.container-grid` gets a padding-left of the set padding. I have included 12 and 16 column grids by default, so the layout can take advantage of three and four column layouts. [View the example page](http://ferne97.github.com/simple-responsive-grid-system/).
+
+### Some Example Code
 
 ```html
 <div class="container-grid">
@@ -18,9 +22,61 @@ A responsive grid system based off of Chris Coyier's [Don't Overthink It Grids](
 </div>
 ```
 
-The main idea behind this is that the parent container `.container-grid` get's a padding-left of the set padding, which by default is 30px. Then Each column get's a padding-right of the set padding. By setting the padding-left on the parent container, you don't have to worry about zeroing out the last column's margin or padding.
+```scss
+// Variables
+$grid-column-12: 12;
+$grid-gutter:    30px;
+$max-width:      1340px;
 
-If you prefer to keep your markup free of grid classes, you can use an `@include col()` on your own class. For Example..
+
+// Loop
+@for $n from 1 through $grid-column-12 {
+    .col-#{$n}-#{$grid-column-12} {
+        @extend .col;
+        width: percentage($n / $grid-column-12);
+    }
+}
+```
+
+## Class Names
+
+The class names for the columns consist of the amount or rows to span and the total amount of columns `.col-4-12`. `.col-100` is used for a full-width column. There are also 'simple fraction' helper classes like `.col-1-2` and `.col-1-3` which feel a little cleaner and can make more sense once you start nesting columns. Since the content is floated, each column should be wrapped in a `.grid-row` div, or an element of your choice, as long as it contains the floats.
+
+## Nesting
+
+If you need to nest columns, add a class of `grid-nested` alongside the parent `col-x-x` class. `grid-nested` simply adds `padding-right: 0` so the padding won't be doubled once a child column is added.
+
+```html
+<div class="grid-row">
+    <div class="col-8-12 grid-nested">
+
+        <div class="grid-row">
+            <div class="col-1-2"></div>
+            <div class="col-1-2"></div>
+        </div>
+
+        <div class="grid-row">
+            <div class="col-1-3"></div>
+            <div class="col-1-3"></div>
+            <div class="col-1-3"></div>
+        </div>
+
+    </div><!-- end grid-nested -->
+
+    <div class="col-4-12 grid-nested">
+
+        <div class="grid-row">
+            <div class="col-1-2"></div>
+            <div class="col-1-2"></div>
+        </div>
+
+    </div><!-- end grid-nested -->
+</div><!-- end grid-row -->
+```
+
+## Includes
+
+You can use your own layout and class names.
 
 ```html
 <div class="container">
@@ -38,13 +94,13 @@ If you prefer to keep your markup free of grid classes, you can use an `@include
 </div>
 ```
 
-**scss**
+Then in your scss use an `@include col(x, x)` to have it generate the width of your columns.
 
 ```scss
 .container {
-    max-width: 1020px;
     margin: 0 auto;
     padding-left: $grid-gutter;
+    max-width: $max-width;
 }
 
 .group {
@@ -66,5 +122,36 @@ The mixin for a column uses two paramaters. `$n` for how many columns to span an
 @mixin col($n, $cols: $grid-column-16) {
     @include col-base();
     width: percentage($n / $cols);
+}
+```
+
+The `col` mixin also includes the `col-base` mixin which adds the rest of the necessary styles.
+
+```scss
+@mixin col-base {
+    position: relative;
+    display: block;
+    float: left;
+    padding-right: $grid-gutter;
+}
+```
+
+So this..
+
+```scss
+.content-main {
+    @include col(8, 12);
+}
+```
+
+Will output to this..
+
+```css
+.content-main {
+    position: relative;
+    display: block;
+    float: left;
+    padding-right: 30px;
+    width: 66.66667%;
 }
 ```
