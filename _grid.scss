@@ -23,12 +23,10 @@ $max-width:      1340px;
 @mixin box-sizing($box: border-box) {
 	-webkit-box-sizing: $box;
 	-moz-box-sizing: $box;
-	-ms-box-sizing: $box;
 	box-sizing: $box;
 }
 
 @mixin col-base {
-	@include box-sizing(border-box);
 	position: relative;
 	display: block;
 	float: left;
@@ -53,6 +51,12 @@ $max-width:      1340px;
 
 // Grid Setup
 // ----------------------------------------------
+*,
+*:after,
+*:before {
+	@include box-sizing(border-box);
+}
+
 .container-grid {
 	margin: 0 auto;
 	padding-left: $grid-gutter;
@@ -110,6 +114,36 @@ $max-width:      1340px;
 .col-3-4 {
 	@extend .col;
 	@extend .col-12-16;
+}
+
+.col-1-6 {
+	@extend .col;
+	@extend .col-2-12;
+}
+
+.col-5-6 {
+	@extend .col;
+	@extend .col-10-12;
+}
+
+.col-1-8 {
+	@extend .col;
+	@extend .col-2-16;
+}
+
+.col-3-8 {
+	@extend .col;
+	@extend .col-6-16;
+}
+
+.col-5-8 {
+	@extend .col;
+	@extend .col-10-16;
+}
+
+.col-7-8 {
+	@extend .col;
+	@extend .col-14-16;
 }
 
 .col-right {
