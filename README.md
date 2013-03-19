@@ -2,7 +2,7 @@
 
 Simple Responsive Grid System is based off of Chris Coyier's [Don't Overthink It Grids](http://css-tricks.com/dont-overthink-it-grids/). It is using Scss to create percentage based columns which can easily be modified by changing the variables. The variables let you set a max-width, # of columns, and the width of the gutters.
 
-Each column gets a padding-right of the set padding which by default is 30px. The parent container `.container-grid` gets a padding-left of the set padding. I have include a 12 & 16 column grid layout by default, so the layout can take advantage of a 3 or 4 column layout.
+Each column gets a padding-right of the set padding which by default is 30px. The parent container `.container-grid` gets a padding-left of the set padding. I have included 12 and 16 column grids by default, so the layout can take advantage of three and four column layouts.
 
 ### Some Example Code
 
@@ -76,7 +76,7 @@ If you need to nest columns, add a class of `grid-nested` alongside the parent `
 
 ## Includes
 
-If you prefer to keep your markup free of grid classes, you can use an `@include col()` on your own class. For Example..
+You can use your own layout and class names.
 
 ```html
 <div class="container">
@@ -94,13 +94,13 @@ If you prefer to keep your markup free of grid classes, you can use an `@include
 </div>
 ```
 
-**scss**
+Then in your scss use an `@include col(x, x)` to have it generate the width of your columns.
 
 ```scss
 .container {
-    max-width: 1020px;
     margin: 0 auto;
     padding-left: $grid-gutter;
+    max-width: $max-width;
 }
 
 .group {
@@ -122,5 +122,17 @@ The mixin for a column uses two paramaters. `$n` for how many columns to span an
 @mixin col($n, $cols: $grid-column-16) {
     @include col-base();
     width: percentage($n / $cols);
+}
+```
+
+The `col` mixin also includes the `col-base` mixin which adds the rest of the necessary styles.
+
+```scss
+@mixin col-base {
+    @include box-sizing(border-box);
+    position: relative;
+    display: block;
+    float: left;
+    padding-right: $grid-gutter;
 }
 ```
