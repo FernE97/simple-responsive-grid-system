@@ -40,7 +40,7 @@ $max-width:      1340px;
 
 ## Class Names
 
-The class names for the columns consist on the amount or rows to span and the total amount of columns `.col-4-12`. There are also 'simple fraction' helper classes like `.col-1-2` and `.col-1-3` which feel a little cleaner and can make more sense once you start nesting columns. Since the content is floated, each column should be wrapped in a `.grid-row` div, or an element of your choice, as long as it contains the floats.
+The class names for the columns consist on the amount or rows to span and the total amount of columns `.col-4-12`. `.col-100` is used for a full-width column. There are also 'simple fraction' helper classes like `.col-1-2` and `.col-1-3` which feel a little cleaner and can make more sense once you start nesting columns. Since the content is floated, each column should be wrapped in a `.grid-row` div, or an element of your choice, as long as it contains the floats.
 
 ## Nesting
 
@@ -134,5 +134,29 @@ The `col` mixin also includes the `col-base` mixin which adds the rest of the ne
     display: block;
     float: left;
     padding-right: $grid-gutter;
+}
+```
+
+So this..
+
+```scss
+.content-main {
+    @include col(8, 12);
+}
+```
+
+Will output to this..
+
+```css
+.content-main {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    float: left;
+    padding-right: 30px;
+    width: 66.66667%;
 }
 ```
