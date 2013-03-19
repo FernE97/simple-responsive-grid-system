@@ -20,6 +20,8 @@ A responsive grid system based off of Chris Coyier's [Don't Overthink It Grids](
 
 The main idea behind this is that the parent container `.container-grid` get's a padding-left of the set padding, which by default is 30px. Then Each column get's a padding-right of the set padding. By setting the padding-left on the parent container, you don't have to worry about zeroing out the last column's margin or padding.
 
+## Includes
+
 If you prefer to keep your markup free of grid classes, you can use an `@include col()` on your own class. For Example..
 
 ```html
