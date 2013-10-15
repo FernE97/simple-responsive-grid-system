@@ -40,7 +40,7 @@ $max-width:      1340px;
 
 ## Class Names
 
-The class names for the columns consist of the amount or rows to span and the total amount of columns `.col-4-12`. `.col-100` is used for a full-width column. There are also 'simple fraction' helper classes like `.col-1-2` and `.col-1-3` which feel a little cleaner and can make more sense once you start nesting columns. Since the content is floated, each column should be wrapped in a `.grid-row` div, or an element of your choice, as long as it contains the floats.
+The class names for the columns consist of the amount of rows to span and the total amount of columns `.col-4-12`. `.col-100` is used for a full-width column. There are also 'simple fraction' helper classes like `.col-1-2` and `.col-1-3` which feel a little cleaner and can make more sense once you start nesting columns. Since the content is floated, each column should be wrapped in a `.grid-row` div to contain the floats.
 
 ## Nesting
 
