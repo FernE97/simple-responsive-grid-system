@@ -1,53 +1,5 @@
-// Percentage based grids with fixed gutter width
-$grid-column-12: 12;
-$grid-column-16: 16;
-$grid-gutter:    30px;
-$max-width:      1340px;
-
-// Mixins
-// ----------------------------------------------
-@mixin clearfix {
-    *zoom: 1;
-
-    &:before,
-    &:after {
-        display: table;
-        content: "";
-    }
-
-    &:after {
-        clear: both;
-    }
-}
-
-@mixin box-sizing($box: border-box) {
-    -webkit-box-sizing: $box;
-    -moz-box-sizing: $box;
-    box-sizing: $box;
-}
-
-@mixin col-base {
-    position: relative;
-    display: block;
-    float: left;
-    padding-right: $grid-gutter;
-}
-
-@mixin col($n, $cols: $grid-column-16) {
-    @include col-base();
-    width: percentage($n / $cols);
-}
-
-@mixin col-100() {
-    float: none;
-    width: 100%;
-}
-
-// for full width element not wrapped in a col
-@mixin pull-left {
-    margin-left: -$column;
-    padding-left: $column;
-}
+@import "deps/variables";
+@import "deps/mixins";
 
 // Grid Setup
 // ----------------------------------------------
